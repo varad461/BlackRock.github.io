@@ -1,0 +1,136 @@
+// variables
+$secondary: #889b9b;
+$tertiary: #6c5021;
+$tertiaryDark: #291e0c;
+$accent: #fdd262;
+$accentDarker: #f2c146;
+$dark: #444c49;
+$black: #232323;
+$white: #fafafa;
+
+// defined with css variables so I can manipulate them with js later
+:root {
+	--primary: #446455;
+	--primaryLight: #adc7bb;
+	--primaryDark10: #2f463b;
+	--primaryDark20: #1b2721;
+	--background: #212a29;
+	--tertiary: #6c5021;
+	--tertiaryDark: #291e0c;
+}
+// importing fonts
+@import url("https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700,900|Fira+Sans|Playfair+Display&display=swap");
+
+$titleStack: "Cinzel Decorative", cursive;
+$headingStack: "Playfair Display", serif;
+$bodyStack: "Fira Sans Condensed", sans-serif;
+
+//mixins
+@mixin flexRow($justify: center) {
+	display: flex;
+	flex-direction: row;
+	justify-content: $justify;
+	align-items: center;
+}
+
+@mixin flexCol($align: center) {
+	display: flex;
+	flex-direction: column;
+	justify-content: $align;
+	align-items: center;
+}
+
+@mixin buttonStyle {
+	background: linear-gradient($accent 70%, darken($accentDarker, 30%) 90%);
+	box-shadow: inset 0 0 5px 2px lighten($accent, 10%),
+		0 0 4px var(--primaryDark10);
+	color: darken($dark, 10%);
+	padding: 10px;
+	border-radius: 10px;
+	border: none;
+	font-size: 1.6rem;
+	height: 3.7rem;
+	text-transform: capitalize;
+}
+
+@mixin buttonActive {
+	background: linear-gradient($accentDarker 40%, $accent 60%);
+	box-shadow: inset 0 0 5px 3px darken($accentDarker, 40%),
+		0 0 3px var(--primaryDark10);
+	color: darken($dark, 10%);
+	border: 1px solid black;
+}
+
+@mixin cardBack {
+	background: radial-gradient(
+		var(--primary) 10%,
+		$white 10%,
+		$white 12%,
+		var(--primary) 12%,
+		var(--primary) 22%,
+		$white 22%,
+		$white 24%,
+		var(--primary) 24%,
+		var(--primary) 34%,
+		$white 34%,
+		$white 36%,
+		var(--primary) 36%,
+		var(--primary) 46%,
+		$white 46%,
+		$white 48%,
+		var(--primary) 48%,
+		var(--primary) 58%,
+		$white 58%,
+		$white 60%,
+		var(--primary) 60%,
+		var(--primary) 70%,
+		$white 70%,
+		$white 72%,
+		var(--primary) 72%,
+		var(--primary) 82%,
+		$white 82%,
+		$white 84%,
+		var(--primary) 84%,
+		var(--primary) 94%,
+		$white 94%,
+		$white 96%,
+		var(--primary) 96%
+	);
+}
+
+//media query mixins
+@mixin maxWidth950 {
+	@media (max-width: 950px) {
+		@content;
+	}
+}
+// major break
+@mixin maxWidth740 {
+	@media (max-width: 740px) {
+		@content;
+	}
+}
+
+@mixin maxWidth600 {
+	@media (max-width: 600px) {
+		@content;
+	}
+}
+
+@mixin maxWidth500 {
+	@media (max-width: 500px) {
+		@content;
+	}
+}
+
+@mixin maxHeight580 {
+	@media (max-height: 580px) {
+		@content;
+	}
+}
+
+@mixin maxWidth530maxHeight580 {
+	@media (max-width: 530px) and (max-height: 580px) {
+		@content;
+	}
+}

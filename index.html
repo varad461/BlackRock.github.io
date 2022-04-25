@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>BlackROCK</title>
+
+    <!-- jQuery -->
+    <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+	<!-- styles -->
+	<link rel='stylesheet' href='./styles/style.css'>
+	<!-- that sweet sweet favicon -->
+    <link rel="shortcut icon" href="./assets/favicon0.png" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <div class="wrapper">
+			<h1>BlackROCK</h1>
+			<section class="rulesModal hide">
+				<button class="closeRules">X</button>
+				<h2>Rules</h2>
+				<input type="radio" name="rules" id="basicRules" class="leftRadio rulesRadioInput" checked>
+				<label for="basicRules" class="rulesRadio leftRadioLabel">basic</label>
+				<input type="radio" name="rules" id="advancedRules" class="rightRadio rulesRadioInput">
+				<label for="advancedRules" class="rulesRadio rightRadioLabel">advanced</label>
+
+				<h3>The object is to get closest to 21 without going over</h3>
+
+				<ol class="basicRulesList">
+					<li>Cards 2-9 are worth face value. Jacks, Queens, and Kings are worth 10, Aces are worth 11 or 1 and may be reassigned at any time during play.</li>
+					<li>Players are dealt 2 cards.</li>
+					<li>The house is dealt 2 cards, one face down.</li>
+					<li>Players may 'hit' to receive another card.</li>
+					<li>Player may keep hitting until they decide to stop, or 'stay'.</li>
+					<li>If player reaches a value of 21 they win automatically, or if they go over 21 they lose or 'bust'.</li>
+					<li>Once players have gone the house will reveal cards and take its turn. The house will continue to hit until reaching a minimum value of 17.</li>
+					<li>hands are tallied and anyone beating the house will win and be paid out.</li>
+				</ol>
+
+				<ol class="advancedRulesList">
+					<li>Players place bets before cards are dealt.</li>
+					<li>All bets are paid out at a 2:1 ratio meaning a $500 bet will pay out $1000.</li>
+					<li>Blackjack pays out at a 3:1 ratio meaning a $500 bet will pay out $15000.</li>
+					<li>If the player ties with the house, the players bet will be returned to their wallet.</li>
+					<li>A player may 'double down' before their first hit, whereby they will double their bet and receive only one additional card.</li>
+				</ol>
+
+				<button class="letsPlay">let's play!</button>
+			</section> <!-- end of rules section-->
+            
+
+			<section class="gameBoard">
+				<p class="bettingPool">Current Bet $0 </p>
+				<button class="doubleDown" disabled>Double Down</button>
+				
+				<div class="deck">
+				</div>
+			<!-- human player -->
+				<section class="p1">
+					<p class="earnings attention">Wallet: $500 </p>
+					<h2>player 1</h2>
+					<button class="deal">deal</button>
+					<button class="bet">bet $50</button>
+					<button class="hit" disabled>hit</button>
+					<button class="stay" disabled>stay</button>
+					<div class="scoreCounter p1Score" title="hand value">
+						<p> </p>
+					</div>
+					<!-- cards will all be populated with js in deal function -->
+					<div class="card card1">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card2">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card3 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card4 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card5 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card6 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+				</section>
+			<!-- computer -->
+				<section class="p2">
+					<h2>House</h2>
+					<button class="rulesButton">rules</button>
+					<button class="shop">shop</button>
+					<div class="scoreCounter p2Score" title="hand value">
+						<p> </p>
+					</div>
+					<div class="card card1 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card2">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card3 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card4 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					<div class="card card5 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					<div class="card card6 fadeInRight">
+						<h3 class="cardNumber"></h3>
+						<div class="cardSuit"></div>
+						<h4 class="cardNumber"></h4>
+					</div>
+					</div>
+				</section>
+			</section> <!--end of game board-->
+
+			<!-- gotta spend your winnings on something right? -->
+			<div class="shopWindow">
+				<h2>Shop</h2>
+				<button class="close closeShop">X</button>
+				<ol>
+					<li>
+						<p>Standard Table</p>
+						<button class="changeTable1 table 0">Switch</button>
+					</li>
+					<li>
+						<p>High Roller Table</p>
+						<button class="changeTable2 table 750 cast">$750</button>
+					</li>
+					<li>
+						<p>Elite Table</p>
+						<button class="changeTable3 table 1200 cast">$1200</button>
+					</li>
+					<li>
+						<p>Luxury Table</p>
+						<button class="changeTable4 table 1800 cast">$1800</button>
+					</li>
+				</ol>
+			</div>
+			<div class="winScreen">
+				<h2></h2>
+				<p></p>
+				<button class="playAgain">
+					play again
+				</button>   
+			</div>
+		</div> <!--end of wrapper?-->
+    </main>
+    <script src='script.js'></script>
+</body>
+</html>

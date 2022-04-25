@@ -1,0 +1,471 @@
+.rulesModal {
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background: var(--primary);
+	color: $white;
+	border-radius: 10px;
+	border: 2px solid $accent;
+	box-shadow: 0px 0px 0px 5px var(--primary);
+	max-width: 1000px;
+	width: 100%;
+	text-align: center;
+
+	@include maxWidth740 {
+		min-height: 100vh;
+		width: 100%;
+		top: 0;
+		left: 0;
+		transform: none;
+		border-radius: 0;
+		border: 4px solid $accent;
+	}
+
+	ol {
+		position: relative;
+		border: 2px solid $accent;
+		border-left: none;
+		border-right: none;
+		border-radius: 20px;
+		padding-top: 10px;
+
+		li {
+			margin: 1% 0;
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			content: "";
+			width: 100%;
+			height: 40px;
+			left: 0;
+			top: -40px;
+			border-bottom: 2px solid $accent;
+			border-radius: 20px;
+		}
+
+		&:after {
+			top: auto;
+			bottom: -40px;
+			border-top: 2px solid $accent;
+			border-bottom: none;
+		}
+	}
+}
+
+.winScreen {
+	@extend .rulesModal;
+	top: 200px;
+	height: 250px;
+	width: 40%;
+
+	@include maxWidth740 {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+		height: 50%;
+		min-height: 0;
+		border-radius: 10px;
+		box-shadow: 0px 0px 0px 5px var(--primary), 0 0 10px 10px black;
+	}
+}
+
+.basicRulesList,
+.advancedRulesList {
+	display: none;
+	text-align: left;
+}
+
+.leftRadio,
+.rightRadio {
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+	margin: 0;
+}
+
+.leftRadio:focus ~ .leftRadioLabel,
+.rightRadio:focus ~ .rightRadioLabel {
+	outline: 2px $accent dotted;
+}
+
+.rulesRadioInput:focus ~ .rightRadioLabel:after {
+	position: absolute;
+	border-radius: 5px;
+	padding: 5px;
+	border: 2px dotted $black;
+	left: 5px;
+	top: 5px;
+	width: 100px;
+	background: $accent;
+	text-transform: lowercase;
+	content: "If using a keyboard, the arrow keys will switch ruleset";
+}
+
+.rulesRadio {
+	@include buttonStyle;
+}
+.leftRadioLabel {
+	position: absolute;
+	top: 26.5px;
+	left: 50%;
+	transform: translateX(-190%);
+	border-radius: 50px 5px 5px 50px;
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.rightRadioLabel {
+	position: absolute;
+	top: 26.5px;
+	right: 50%;
+	transform: translateX(190%);
+	border-radius: 5px 50px 50px 5px;
+	display: inline-block;
+	width: 100px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.leftRadio:checked ~ .leftRadioLabel,
+.rightRadio:checked ~ .rightRadioLabel {
+	@include buttonActive;
+}
+
+.leftRadio:checked ~ .basicRulesList {
+	display: block;
+}
+
+.leftRadio:checked ~ .advancedRulesList {
+	display: none;
+}
+
+.rightRadio:checked ~ .basicRulesList {
+	display: none;
+}
+
+.rightRadio:checked ~ .advancedRulesList {
+	display: block;
+}
+
+.letsPlay {
+	@include buttonStyle;
+	margin-top: 20px;
+}
+
+.letsPlay:active {
+	@include buttonActive;
+}
+
+.winScreen {
+	display: none;
+}
+
+button {
+	@include buttonStyle;
+	position: relative;
+	z-index: 1;
+}
+button:active {
+	@include buttonActive;
+}
+
+button:focus {
+	outline: 2px $accent dotted;
+}
+
+button:hover:not(:disabled),
+label:hover {
+	cursor: pointer;
+}
+
+.closeRules {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 5px;
+	height: auto;
+	border-radius: 4px;
+	font-size: 1.5rem;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.hit,
+.stay,
+.deal,
+.rulesButton,
+.bet,
+.shop,
+.doubleDown {
+	position: absolute;
+	top: -50px;
+	width: 40%;
+	box-shadow: inset -4px -2px 3px darken($accentDarker, 40%),
+		3px 3px 3px var(--primaryDark20);
+}
+
+.stay,
+.bet {
+	left: 50%;
+}
+
+.hit,
+.stay,
+.bet {
+	transition: opacity 0.3s;
+}
+
+.hit:disabled,
+.stay:disabled,
+.bet:disabled,
+.doubleDown:disabled {
+	opacity: 0.4;
+}
+.table:disabled.table:active {
+	@include buttonStyle;
+	opacity: 0.4;
+}
+
+.hit:disabled.hit:active,
+.stay:disabled.stay:active,
+.bet:disabled.bet:active,
+.doubleDown:disabled.doubleDown:active {
+	background: linear-gradient($accent 70%, darken($accentDarker, 30%) 90%);
+	box-shadow: inset -4px -2px 3px #654a07, 3px 3px 3px #1b2721;
+	border: none;
+}
+
+.doubleDown {
+	position: absolute;
+	top: 30%;
+	width: auto;
+	padding: 0 15px;
+
+	@include maxWidth740 {
+		top: 70px;
+		left: 20px;
+	}
+
+	@include maxHeight580 {
+		top: 70px;
+		left: 20px;
+	}
+
+	@include maxWidth500 {
+		top: 90px;
+		left: 20px;
+	}
+
+	@include maxWidth530maxHeight580 {
+		top: 90px;
+	}
+}
+
+.deal,
+.bet {
+	top: -95px;
+}
+
+.rulesButton,
+.shop {
+	width: 80%;
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: inset 5px -2px 3px darken($accentDarker, 40%),
+		3px 3px 3px var(--primaryDark20);
+
+	@include maxWidth740 {
+		box-shadow: inset -4px -2px 3px darken($accentDarker, 40%),
+			3px 3px 3px var(--primaryDark20);
+	}
+
+	@include maxWidth600 {
+		left: 0;
+		transform: none;
+	}
+}
+
+.shop {
+	top: -95px;
+}
+
+.shopWindow {
+	@extend .winScreen;
+	height: auto;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%, -50%);
+
+	ol {
+		list-style-type: none;
+		text-align: center;
+		padding: 0 0 10px;
+	}
+
+	p {
+		margin: 20px 0 10px;
+	}
+}
+
+.closeShop {
+	@extend .closeRules;
+}
+
+.table {
+	width: 100px;
+}
+
+.table:active {
+	@include buttonActive;
+}
+
+.table:disabled {
+	opacity: 0.4;
+}
+
+.animatingOut {
+	animation: hideMe 0.8s;
+}
+
+.animatingIn {
+	animation: showMe 0.8s forwards;
+}
+
+@keyframes hideMe {
+	0% {
+		@include buttonActive;
+	}
+	50% {
+		line-height: 0;
+		padding: 10px 0;
+		color: transparent;
+	}
+	60% {
+		box-shadow: inset 50px 80px 1px 1px black;
+	}
+	61% {
+		background: var(--primary);
+	}
+	70% {
+		box-shadow: inset 20px 20px 1px 1px black;
+	}
+	100% {
+		@include buttonStyle;
+		background: transparent;
+		box-shadow: none;
+		color: transparent;
+	}
+}
+
+@keyframes showMe {
+	0% {
+		@include buttonStyle;
+		background: transparent;
+		box-shadow: none;
+		color: transparent;
+	}
+	50% {
+		border-right: 100% solid var(--primary);
+		padding: 10px 0;
+		color: transparent;
+	}
+
+	60% {
+		box-shadow: inset 20px 80px 1px 1px black;
+		background: var(--primary);
+	}
+	61% {
+		@extend .deal;
+		box-shadow: inset 20px 80px 1px 1px black;
+	}
+
+	80% {
+		box-shadow: inset 20px 20px 1px 1px black;
+		color: transparent;
+		line-height: 0;
+		font-size: 0;
+	}
+	100% {
+		@extend .deal;
+		color: black;
+	}
+}
+
+@include maxWidth600 {
+	.hit,
+	.stay,
+	.deal,
+	.bet {
+		width: 37%;
+		height: 50px;
+		top: -62px;
+	}
+
+	.deal,
+	.hit {
+		left: 20%;
+	}
+
+	.bet,
+	.stay {
+		right: 0;
+		left: auto;
+	}
+
+	.deal,
+	.bet {
+		padding: 5px;
+		top: -120px;
+	}
+
+	.rulesButton {
+		height: 50px;
+		top: -62px;
+	}
+
+	.shop {
+		height: 50px;
+		top: -120px;
+	}
+}
+
+@include maxWidth500 {
+	h2 {
+		font-size: 3rem;
+		margin-top: 20px;
+	}
+	.rulesModal h3 {
+		font-size: 1.5rem;
+	}
+	.leftRadioLabel,
+	.rightRadioLabel {
+		top: 35px;
+		width: 85px;
+		padding: 5px;
+		height: auto;
+	}
+
+	.leftRadioLabel {
+		transform: translateX(-170%);
+	}
+
+	.rightRadioLabel {
+		transform: translateX(170%);
+	}
+
+	ol {
+		padding-left: 25px;
+	}
+
+	li {
+		font-size: 1.8rem;
+	}
+}
